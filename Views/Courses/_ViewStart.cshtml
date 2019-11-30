@@ -1,0 +1,10 @@
+﻿@{
+    List<TopMenuItem> topMenu = new List<TopMenuItem>();
+    topMenu.Add(new TopMenuItem { AspAction = "Index", AspController = "Employees", DisplayText = "Employees" });
+    topMenu.Add(new TopMenuItem { AspAction = "Index", AspController = "Students", DisplayText = "Students" });
+    topMenu.Add(new TopMenuItem { AspAction = "Index", AspController = "AcademicRecords", DisplayText = "Student Records" });
+
+    ViewData["topMenu"] = topMenu;
+    ViewData["Title"] = "Courses";
+    Layout = "~/Views/Shared/_ACLayout.cshtml";
+}

@@ -1,0 +1,49 @@
+﻿@model Lab8.Models.DataAccess.AcademicRecord[]
+
+@{
+    ViewData["Title"] = "Edit All";
+}
+
+<h1>Academic Records</h1>
+<form asp-controller="AcademicRecords" asp-action="EditAll" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-controller="AcademicRecords" asp-action="EditAll" asp-route-clickedColumn="course">Course</a>
+                </th>
+                <th>
+                    <a asp-controller="AcademicRecords" asp-action="EditAll" asp-route-clickedColumn="student">Student</a>
+                </th>
+                <th>
+                    <a asp-controller="AcademicRecords" asp-action="EditAll" asp-route-clickedColumn="grade">Grade</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int key = 0; key < Model.Length; key++)
+            {
+                <tr>
+                    <td>
+                        @Model[key].CourseCodeNavigation.Code - @Model[key].CourseCodeNavigation.Title
+                    </td>
+                    <td>
+                        <label asp-for="@Model[key].Grade class="control-label">
+                            @Model[key].Student.Id - @Model[key].Student.Name
+                        </label>
+                    </td>
+                    <td>
+                        <input asp-for="@Model[key].Grade" class="form-control" type="number" value="@Model[key].Grade" />
+                        <input type="hidden" asp-for="@Model[key].StudentId" />
+                        <input type="hidden" asp-for="@Model[key].CourseCode" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-controller="AcademicRecords" asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+<br/>

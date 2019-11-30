@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lab8.Models.DataAccess.AcademicRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-controller="AcademicRecords" asp-action="Index" asp-route-clickedColumn="course">Course</a>
+            </th>
+            <th>
+                <a asp-controller="AcademicRecords" asp-action="Index" asp-route-clickedColumn="student">Student</a>
+            </th>
+            <th>
+                <a asp-controller="AcademicRecords" asp-action="Index" asp-route-clickedColumn="grade">Grade</a>
+            </th>
+            <th>
+                <strong><a asp-controller="AcademicRecords" asp-action="EditAll">Edit All</a></strong>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.CourseCodeNavigation.Code - @item.CourseCodeNavigation.Title
+                </td>
+                <td>
+                    @item.Student.Id - @item.Student.Name
+                </td>
+                <td>
+                    @item.Grade
+                </td>
+                <td>
+                    <a asp-controller="AcademicRecords" asp-action="Edit" asp-route-studentId="@item.StudentId" asp-route-courseCode="@item.CourseCode">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

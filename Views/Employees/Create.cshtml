@@ -1,0 +1,56 @@
+﻿@model Lab8.Models.EmployeeRoleSelections
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="employee.Name" class="control-label"></label>
+                <input asp-for="employee.Name" class="form-control" />
+                <span asp-validation-for="employee.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="employee.UserName" class="control-label"></label>
+                <input asp-for="employee.UserName" class="form-control" />
+                <span asp-validation-for="employee.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="employee.Password" class="control-label"></label>
+                <input asp-for="employee.Password" class="form-control" />
+                <span asp-validation-for="employee.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Job Title</label><br />
+                @for (int i = 0; i < Model.roleSelections.Count; i++) {
+                    <label asp-for="@Model.roleSelections[i].Selected" class="control-label">
+                        @Model.roleSelections[i].role.Role1
+                    </label>
+                    <input type="checkbox" asp-for="@Model.roleSelections[i].Selected" />
+                    <input type="hidden" asp-for="@Model.roleSelections[i].role.Id" />
+                    <input type="hidden" asp-for="@Model.roleSelections[i].role.Role1" />
+                    @:&nbsp;&nbsp;&nbsp;
+                }
+                <br /><span asp-validation-for="roleSelections" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
